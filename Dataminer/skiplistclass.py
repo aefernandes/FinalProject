@@ -6,6 +6,7 @@ class SkipNode:
     """A node from a skip list"""    
     def __init__(self, height = 0, elem = None):
         self.elem = elem
+        # defines a next element to be pointing to None times the height 
         self.next = [None]*height
 
 class SkipList:
@@ -15,8 +16,18 @@ class SkipList:
         self.len = 0
         self.maxHeight = 0
 
+    # defines length magic method as an accessor
     def __len__(self):
         return self.len
+
+    def updateList(self, elem):
+        update = [None]*self.maxHeight
+        x = self.head
+        for i in reversed(range(self.maxHeight)):
+            while x.next[i] != None and x.next[i].elem < elem:
+                x = x.next[i]
+            update[i] = x
+        return update
 
     def find(self, elem, update = None):
         if update == None:
@@ -36,14 +47,6 @@ class SkipList:
             height += 1
         return height
 
-    def updateList(self, elem):
-        update = [None]*self.maxHeight
-        x = self.head
-        for i in reversed(range(self.maxHeight)):
-            while x.next[i] != None and x.next[i].elem < elem:
-                x = x.next[i]
-            update[i] = x
-        return update
         
     def insert(self, elem):
 
