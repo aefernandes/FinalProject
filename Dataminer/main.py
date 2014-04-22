@@ -1,6 +1,9 @@
 from population import Population 
+from presidentialorders import PresidentialOrders
+from researchgrants import Grants
 import csv
 import math
+import sys
 
 ################# DATA MINER ####################
 #                                               #
@@ -12,7 +15,7 @@ import math
 # First, defines the 3 builder functions
 
 # makes the population skiplist
-def makepopulationlist():
+def makePopulationlist():
     popobj = Population('population.csv')
     populationlist = popobj.buildPopulation()
 
@@ -21,24 +24,58 @@ def makepopulationlist():
 
     return popobj.skiplist
 
-def makeDATASET2list():
+def makePresidentialOrderlist():
+    ordersobj = PresidentialOrders('presidentialdocuments.csv')
+    orderslist = ordersobj.buildPresidentialOrders()
 
-def makeDATASET3list():
+    for item in orderslist:
+        ordersobj.skiplist.insert(item)
+        
+    return ordersobj.skiplist
+
+
+def makeGrantlist():
+    grantobj = Grants('researchgrants.csv')
+    grantlist = grantobj.buildGrants()
+
+    for item in grantlist:
+        grantobj.skiplist.insert(item)
+
+    return grantobj.skiplist
 
 
 def main():
 
+    choice = raw_input("What kind of skip list do you want to build? \
+                        Population, PresidentialOrders, or ResearchGrants? \
+                        [1/2/3]\n")
     # CHECK for user input
-    if CHOICE == POPULATION:
-        popskiplist = makepopulationlist()
+    if choice == "1":
+        popskiplist = makePopulationlist()
         print "Built the population list successfully!\n"
 
-    elif CHOICE == DATASET2:
-        DATASET2skiplist = makeDATASET2list()
-        print "Built the DATASET2 list successfully!\n"
+        question = raw_input("Want to print it out? [Y/N]\n")
+        if question == "Y" or "y":
+            popskiplist.printList()
+
+    elif choice == "2":
+        presidentialskiplist = makePresidentialOrderlist()
+        print "Built the presidential document list successfully!\n"
+
+        question = raw_input("Want to print it out? [Y/N]\n")
+        if question == "Y" or "y":
+            presidentialskiplist.printList()
+
+    elif choice == "3":
+        grantskiplist = makeGrantlist()
+        print "Built the research grant list successfully!\n"
+
+        question = raw_input("Want to print it out? [Y/N]\n")
+        if question == "Y" or "y":
+            grantskiplist.printList()
+
     else:
-        DATASET3skiplist = makeDATASET3list()
-        print "Built the DATASET3 list successfully!\n"
+        print "Oops, not the correct choice"
 
     # Redirect
     # to another page where the user can actually search
