@@ -1,6 +1,4 @@
-from population import Population 
-from presidentialorders import PresidentialOrders
-from researchgrants import Grants
+from builder import Builder
 import csv
 import math
 import sys
@@ -16,27 +14,28 @@ import sys
 
 # makes the population skiplist
 def makePopulationlist():
-    popobj = Population('population.csv')
-    populationlist = popobj.buildPopulation()
-
+    
+    popobj = Builder('population.csv', 4, 'NAME')
+    populationlist = popobj.build()
     for item in populationlist:
         popobj.skiplist.insert(item)
 
     return popobj.skiplist
 
 def makePresidentialOrderlist():
-    ordersobj = PresidentialOrders('presidentialdocuments.csv')
-    orderslist = ordersobj.buildPresidentialOrders()
-
+   
+    ordersobj = Builder('presidentialdocuments.csv', 1, 'title')
+    orderslist = ordersobj.build()
     for item in orderslist:
         ordersobj.skiplist.insert(item)
-        
+
     return ordersobj.skiplist
 
 
+
 def makeGrantlist():
-    grantobj = Grants('researchgrants.csv')
-    grantlist = grantobj.buildGrants()
+    grantobj = Builder('researchgrants.csv', 0, 'Awardee')
+    grantlist = grantobj.build()
 
     for item in grantlist:
         grantobj.skiplist.insert(item)
