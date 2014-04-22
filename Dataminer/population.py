@@ -32,10 +32,10 @@ class Population(object):
 				# deletes unnecessary state ID key, value pair
 				for i in range(len(row)):
 					restofdict[headers[i]] = row[i]
-					if 'STATE' in restofdict: 
-						del restofdict['STATE']
+					if 'NAME' in restofdict: 
+						del restofdict['NAME']
 
-				popdict[row[3]] = restofdict
+				popdict[row[4]] = restofdict
 				# appends to the list of dictionaries
 				dictlist.append(popdict)
 			# deletes the unnecessary first row of headers in final list
