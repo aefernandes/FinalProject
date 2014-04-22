@@ -1,5 +1,4 @@
 from skiplistclass import SkipList
-import math
 import csv
 
 class Population(object):
