@@ -3,7 +3,7 @@ import math
 import csv
 
 class Population(SkipList):
-	"""docstring for Population"""
+	
 	def __init__(self, csvfile):
 		self.csvfile = csvfile
 
@@ -18,12 +18,29 @@ class Population(SkipList):
 	def buildPopulation(self):
 		# opens the csv file and this is the main method that builds 
 		# the skiplist of dicts for population
+		dictlist = []
 		with open(self.csvfile) as f:
 			population = csv.reader(f)
+
 			for row in population:
-				# insert row[3] as keys of a dict
-				# insert rest of names as keys, and rest of everything
-				# as values
+				# popdict is a dictionary for each row, in which the key is
+				# the state ID and the values are another dict called    
+				# restofdict
+				popdict = {}
+				# rest of dict contains all other items of the row except for # state ID
+				restofdict = {}
+
+				for i in range(len(row)):
+					restofdict[row[i]] = row[i]
+					if row[3] in restofdict: 
+						del restofdict[row[3]]
+
+				popdict[row[3]] = restofdict
+				dictlist.append(popdict)
+			# deletes the unnecessary first row of headers in final list
+			del dictlist[0]
+
+		print dictlist
 
 if __name__ == '__main__':
 	popobj = Population('population.csv')
