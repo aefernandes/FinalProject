@@ -2,17 +2,15 @@ from skiplistclass import SkipList
 import math
 import csv
 
-class Population(SkipList):
-	
+class Population(object):
+
 	def __init__(self, csvfile):
 		self.csvfile = csvfile
+		self.skiplist = SkipList()
 
-# parse the csv, and create a list of dictionaries
-# each element has a key of a state ID, and the values
-# are the rest of the columns.
-
-# for each in dictlist, insert each as a node. Return the skiplist 
-# define the state ID's for the user lookup later
+	# parse the csv, and create a list of dictionaries
+	# each element has a key of a state ID, and the values
+	# are the rest of the columns.
 
 	def buildPopulation(self):
 		# opens the csv file and this is the main method that builds 
@@ -44,9 +42,13 @@ class Population(SkipList):
 			# deletes the unnecessary first row of headers in final list
 			del dictlist[0]
 
+		return dictlist
 
-
+# Testing that the module works standalone and inserts appropriately
 if __name__ == '__main__':
 	popobj = Population('population.csv')
-	popobj.buildPopulation()
+	populationlist = popobj.buildPopulation()
+	for item in populationlist:
+		popobj.skiplist.insert(item)
 
+	popobj.skiplist.printList()
