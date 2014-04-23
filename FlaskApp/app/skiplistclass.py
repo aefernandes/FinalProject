@@ -1,5 +1,6 @@
 from random import randint, seed
 import math
+import csv
 
 
 class SkipNode:
@@ -36,6 +37,35 @@ class SkipList:
             candidate = update[0].next[0]
             if candidate != None and candidate.elem == elem:
                 return candidate
+        return None
+    
+
+    def populationfind(self, typesearch, elem, update = None):
+        # NEEDS TO GO FROM SKIPLIST TO LIST of DICTS
+        dictlist = []
+        for i in range(len(self.head.next)-1, -1, -1):
+            x = self.head
+            while x.next[i] != None:
+                dictlist.append(x.next[i].elem)
+                x = x.next[i]
+
+        for item in dictlist:
+            if typesearch == 'initial':
+                statename = item.keys()
+                if item != None and statename[0][0] == elem:
+                   return item
+
+            elif typesearch == 'popgreater':
+                statename = item.keys()
+                if item != None and statename[0][0] == elem:
+                    return item
+
+            else:
+                statename = item.keys()
+                if item != None and statename[0][0] == elem:
+                    return item
+
+            
         return None
     
     def contains(self, elem, update = None):

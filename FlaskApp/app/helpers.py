@@ -1,7 +1,5 @@
 from builder import Builder
 import csv
-import math
-import sys
 
 ################# DATA MINER ####################
 #                                               #
