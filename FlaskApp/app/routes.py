@@ -28,7 +28,7 @@ def population():
         app.vars['popgreater'] = request.form['popgreater']
         app.vars['poplesser'] = request.form['popgreater']
 
-        filters.makeFilteredPop(populationskiplist, app.vars)
+        filters.InitialFilterPop(populationskiplist, app.vars)
 
         return render_template('download.html')
 

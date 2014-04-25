@@ -55,6 +55,7 @@ class SkipList:
             statename = item.keys()
             if item != None and statename[0][0] == elem:
                 foundlist.append(item)
+                self.remove(item)
         return foundlist
 
 
