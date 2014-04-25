@@ -28,9 +28,9 @@ def population():
         app.vars['popgreater'] = request.form['popgreater']
         app.vars['poplesser'] = request.form['popgreater']
 
-        filteredskiplist = filters.makeFilteredPop(populationskiplist, app.vars)
+        filters.makeFilteredPop(populationskiplist, app.vars)
 
-        return render_template('download.html', sklist = filteredskiplist)
+        return render_template('download.html')
 
 @app.route('/orders', methods = ['GET', 'POST'])
 def orders():

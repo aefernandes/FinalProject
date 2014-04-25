@@ -40,33 +40,24 @@ class SkipList:
         return None
     
 
-    def populationfind(self, typesearch, elem, update = None):
+    def populationfind(self, elem, update = None):
         # NEEDS TO GO FROM SKIPLIST TO LIST of DICTS
         dictlist = []
+        # creates a list of all found elements
+        foundlist = []
         for i in range(len(self.head.next)-1, -1, -1):
             x = self.head
             while x.next[i] != None:
-                dictlist.append(x.next[i].elem)
+                dictlist.append(x.next[i].elem),
                 x = x.next[i]
 
         for item in dictlist:
-            if typesearch == 'initial':
-                statename = item.keys()
-                if item != None and statename[0][0] == elem:
-                   return item
+            statename = item.keys()
+            if item != None and statename[0][0] == elem:
+                foundlist.append(item)
+        return foundlist
 
-            elif typesearch == 'popgreater':
-                statename = item.keys()
-                if item != None and statename[0][0] == elem:
-                    return item
 
-            else:
-                statename = item.keys()
-                if item != None and statename[0][0] == elem:
-                    return item
-
-            
-        return None
     
     def contains(self, elem, update = None):
         return self.find(elem, update) != None
@@ -108,6 +99,6 @@ class SkipList:
         for i in range(len(self.head.next)-1, -1, -1):
             x = self.head
             while x.next[i] != None:
-                print x.next[i].elem,
+                print x.next[i].elem, 
                 x = x.next[i]
             print ''
