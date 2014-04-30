@@ -4,7 +4,16 @@ import filters
 import csv
 
 
-app = Flask(__name__)
+################# DATA MINER ####################
+#                                               #
+#      Makes a dataminer for government data    #
+#      that outputs useful CSV files for easy   #
+#      data manipulation                        #
+#################################################   
+
+
+
+app = Flask(__name__, static_url_path='')
 
 app.vars = {}
 
@@ -78,6 +87,11 @@ def grants():
 
 
 		return render_template('download.html')
+
+@app.route('/download', methods = ['GET'])
+def download():
+	return app.send_static_file('filtereddata.csv')
+
 
 
 if __name__ == '__main__':
