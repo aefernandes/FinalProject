@@ -20,6 +20,7 @@ def makePopulationlist():
 
     return popobj.skiplist
 
+# makes the presidential documents skiplist
 def makePresidentialOrderlist():
    
     ordersobj = Builder('presidentialdocuments.csv', 1, 'title')
@@ -30,7 +31,7 @@ def makePresidentialOrderlist():
     return ordersobj.skiplist
 
 
-
+# makes the research grants skiplist
 def makeGrantlist():
     grantobj = Builder('researchgrants.csv', 0, 'Awardee')
     grantlist = grantobj.build()
@@ -49,6 +50,7 @@ def remove_duplicate(dictlist):
     return output
 
 
+# handy function for making a csv from a list of dicts
 def CSVmaker(uniquelist):
     
     # gets the rownames from any element of the list of dicts

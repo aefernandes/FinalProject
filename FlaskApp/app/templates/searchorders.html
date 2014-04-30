@@ -1,4 +1,14 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="jumbotron"><h1>WORKS! {{ord}}</h1></div>
+<div class="jumbotron"><h1>Search through the Presidential Documents Signed by Barack Obama</h1>
+	<div>
+		<form id="orders-form" action="orders" method="POST">
+			<input type="text" name="title_cont" />Search by Keyword: All Documents that Contain the Keyword
+			
+			<input type="submit" value="Output Filtered File"/>
+		</form>
+
+	</div>
+
+</div>
 {% endblock %}

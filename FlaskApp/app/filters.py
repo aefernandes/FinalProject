@@ -5,16 +5,21 @@ import helpers
 
 # filters the skiplist and returns a filtered CSV file
 # takes in a skiplist and a dict of parameters to filter 
-# and the type of parameter to filter
+# and the type of parameter to filter, and the kind of data
+# 1 is population, 2 is presidential orders, 3 is grant data
 
-def filter(sklist, postreqdict, param, mainkey):
+def filter(sklist, postreqdict, param, mainkey, typedata):
     # checks if initial is a POST request
     if param in postreqdict:
         initialvalue = postreqdict[param]
 
     # searches through the skiplist for all states
     # with that initial
-    filteredlist = sklist.populationfind(initialvalue, param)
+    if typedata == 1:
+        filteredlist = sklist.populationfind(initialvalue, param)
+    else:
+        filteredlist = sklist.ordersfind(initialvalue, param)
+
     precsvlist = []
 
     for elem in filteredlist:

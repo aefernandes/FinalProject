@@ -29,21 +29,28 @@ def population():
         app.vars['poplesser'] = request.form['poplesser']
 
         # FIX BUG HERE: should only accept one request
-        filters.filter(populationskiplist, app.vars, 'initial', 'NAME')
+        filters.filter(populationskiplist, app.vars, 'initial', 'NAME', 1)
 
         return render_template('download.html')
 
 @app.route('/orders', methods = ['GET', 'POST'])
 def orders():
 	if request.method == 'GET':
-		# build the skiplist and pass in as argument
+
+		return render_template('searchorders.html')
+		
+	else:
+	
+		# build the skiplist
 		orderskiplist = helpers.makePresidentialOrderlist()
 
-		return render_template('searchorders.html', ord = orderskiplist)
-	else:
-		# for post request do the searching and redirect
-		# to the download page and pass in file as arg
-		return render_template('searchpopulation.html')
+		app.vars['title_cont'] = request.form['title_cont']
+
+		# FIX BUG HERE: should only accept one request
+		filters.filter(orderskiplist, app.vars, 'title_cont', 'title', 2)
+
+
+		return render_template('download.html')
 
 @app.route('/grants', methods = ['GET', 'POST'])
 def grants():
