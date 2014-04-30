@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="jumbotron"><h1>Search through all Research Grants Awarded in the Past Year in the United States</h1>
+	<div>
+		<form id="grant-form" action="grants" method="POST">
+			<input type="text" name="name_cont" />Search by Keyword: All Research Grants that Contain the Keyword
+			<br />
+			<select name="category">
+				<option value="biological">Biology</option>
+				<option value="engineering">Engineering</option>
+				<option value="Chemistry">Chemistry</option>
+				<option value="social">Social Sciences</option>
+				<option value="computing">Computers</option>
+
+			</select>
+			
+			<input type="submit" value="Output Filtered File"/>
+		</form>
+
+	</div>
+
+</div>
+{% endblock %}
