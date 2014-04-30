@@ -18,7 +18,7 @@ def filter(sklist, postreqdict, param, mainkey, typedata):
     if typedata == 1:
         filteredlist = sklist.populationfind(initialvalue, param)
     else:
-        filteredlist = sklist.ordersfind(initialvalue, param)
+        filteredlist = sklist.ordersfind(initialvalue)
 
     precsvlist = []
 

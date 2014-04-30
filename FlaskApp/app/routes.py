@@ -45,9 +45,10 @@ def orders():
 		orderskiplist = helpers.makePresidentialOrderlist()
 
 		app.vars['title_cont'] = request.form['title_cont']
+		app.vars['category'] = request.form['category']
 
 		# FIX BUG HERE: should only accept one request
-		filters.filter(orderskiplist, app.vars, 'title_cont', 'title', 2)
+		filters.filter(orderskiplist, app.vars, 'category', 'title', 2)
 
 
 		return render_template('download.html')

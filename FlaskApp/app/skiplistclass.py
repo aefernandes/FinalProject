@@ -88,7 +88,7 @@ class SkipList:
                     self.remove(item)
             return foundlist
 
-    def ordersfind(self, elem, search, update = None):
+    def ordersfind(self, elem, update = None):
         # will be used to create a list of dictionaries
         # to represent the skip list
         dictlist = []
@@ -102,27 +102,16 @@ class SkipList:
                 dictlist.append(x.next[i].elem),
                 x = x.next[i]
 
-        if search == 'title_cont':
-            for item in dictlist:
+        for item in dictlist:
 
-                title = item.keys()
-                titlewords = title[0].split()
+            title = item.keys()
+            titlewords = title[0].split()
 
-                if item != None and elem in titlewords:
-                    foundlist.append(item)
-                    self.remove(item)
-            return foundlist
-        else:
-            for item in dictlist:
-
-                title = item.keys()
-                titlewords = title[0].split()
-
-                if item != None and elem in titlewords:
-                    foundlist.append(item)
-                    self.remove(item)
-            return foundlist
-
+            if item != None and elem in titlewords:
+                foundlist.append(item)
+                self.remove(item)
+        return foundlist
+       
 
 
     
