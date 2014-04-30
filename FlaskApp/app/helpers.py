@@ -40,4 +40,28 @@ def makeGrantlist():
 
     return grantobj.skiplist
 
+def PopulationCSV(uniquelist, search):
+    if search == 'initial':
+
+        # gets the rownames from any element of the list of dicts
+        rownames = uniquelist[0].keys()
+        with open('filtereddata.csv', 'wb') as f:
+            writervar = csv.writer(f)
+            writervar.writerow(rownames)
+
+            for row in uniquelist:
+                valtowrite = row.values()
+                writervar.writerow(valtowrite)
+    else:
+          # gets the rownames from any element of the list of dicts
+        rownames = uniquelist[0].keys()
+        with open('filtereddata.csv', 'wb') as f:
+            writervar = csv.writer(f)
+            writervar.writerow(rownames)
+
+            for row in uniquelist:
+                valtowrite = row.values()
+                writervar.writerow(valtowrite)
+
+
 

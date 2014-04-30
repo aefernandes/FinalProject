@@ -1,6 +1,7 @@
 from builder import Builder
 from skiplistclass import SkipList  
 import csv
+import helpers
 
 def remove_duplicate_dictlist(dictlist):
     output = []
@@ -36,5 +37,8 @@ def InitialFilterPop(sklist, postreqdict):
     
     # creates a unique list free of duplicates
     uniquelist = remove_duplicate_dictlist(precsvlist)
-    print uniquelist
+
+    # makes a csv with the uniquelist
+    helpers.PopulationCSV(uniquelist, 'initial')
+ 
  
