@@ -13,7 +13,7 @@ import csv
 # makes the population skiplist
 def makePopulationlist():
     
-    popobj = Builder(filecsv, 4, 'population.csv')
+    popobj = Builder('population.csv', 4, 'NAME')
     populationlist = popobj.build()
     for item in populationlist:
         popobj.skiplist.insert(item)
@@ -21,7 +21,7 @@ def makePopulationlist():
     return popobj.skiplist
 
 # makes the presidential documents skiplist
-def makePresidentialOrderlist(filecsv):
+def makePresidentialOrderlist():
    
     ordersobj = Builder('presidentialdocuments.csv', 1, 'title')
     orderslist = ordersobj.build()
