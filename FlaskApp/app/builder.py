@@ -25,7 +25,7 @@ class Builder(object):
 
 			for row in datafile:
 				# data is a dictionary for each row, in which the key is
-				# the name of the order and the values are another dict called    
+				# the important value of interest and the values are another dict called    
 				# restofdict
 				datadict = {}
 				# rest of dict contains all other items of the row except for # state ID
@@ -50,7 +50,7 @@ class Builder(object):
 if __name__ == '__main__':
 	# builds a sample skiplist to test
 	popobj = Builder('population.csv', 4, 'NAME')
-	populationlist = popobj.buildPopulation()
+	populationlist = popobj.build()
 	for item in populationlist:
 		popobj.skiplist.insert(item)
 

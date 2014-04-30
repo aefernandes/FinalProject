@@ -3,20 +3,18 @@ from skiplistclass import SkipList
 import csv
 import helpers
 
-def remove_duplicate_dictlist(dictlist):
-    output = []
-    for x in dictlist:
-        if x not in output:
-            output.append(x)
-    return output
-
 # filters the skiplist and returns a filtered CSV file
-# takes in a skiplist and a dict of parameters to filter by
-def InitialFilterPop(sklist, postreqdict):
-    if 'initial' in postreqdict:
-        initialvalue = postreqdict['initial']
+# takes in a skiplist and a dict of parameters to filter 
+# and the type of parameter to filter
 
-    filteredlist = sklist.populationfind(initialvalue)
+def FilterPop(sklist, postreqdict, param):
+    # checks if initial is a POST request
+    if param in postreqdict:
+        initialvalue = postreqdict[param]
+
+    # searches through the skiplist for all states
+    # with that initial
+    filteredlist = sklist.populationfind(initialvalue, param)
     precsvlist = []
 
     for elem in filteredlist:
@@ -29,6 +27,8 @@ def InitialFilterPop(sklist, postreqdict):
         singledictionary['NAME'] = namelist[0]
 
         importantvals = elem.values()
+
+        # finishes creating the huge dictionary
         singledictionary.update(importantvals[0])
 
         # creates a list of all these single dictionaries
@@ -36,9 +36,9 @@ def InitialFilterPop(sklist, postreqdict):
         precsvlist.append(singledictionary)
     
     # creates a unique list free of duplicates
-    uniquelist = remove_duplicate_dictlist(precsvlist)
+    uniquelist = helpers.remove_duplicate(precsvlist)
 
     # makes a csv with the uniquelist
-    helpers.PopulationCSV(uniquelist, 'initial')
+    helpers.PopulationCSV(uniquelist)
  
  

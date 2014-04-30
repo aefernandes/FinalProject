@@ -40,23 +40,54 @@ class SkipList:
         return None
     
 
-    def populationfind(self, elem, update = None):
-        # NEEDS TO GO FROM SKIPLIST TO LIST of DICTS
+    def populationfind(self, elem, search, update = None):
+        # will be used to create a list of dictionaries
+        # to represent the skip list
         dictlist = []
         # creates a list of all found elements
         foundlist = []
+
+        # iterates through entire skip list and makes the dictlist
         for i in range(len(self.head.next)-1, -1, -1):
             x = self.head
             while x.next[i] != None:
                 dictlist.append(x.next[i].elem),
                 x = x.next[i]
 
-        for item in dictlist:
-            statename = item.keys()
-            if item != None and statename[0][0] == elem:
-                foundlist.append(item)
-                self.remove(item)
-        return foundlist
+        # filters through for initials
+        if search == 'initial':
+            for item in dictlist:
+                statename = item.keys()
+                if item != None and statename[0][0] == elem:
+                    foundlist.append(item)
+
+                    # removes item from the original skiplist to 
+                    # avoid infinite loop
+                    self.remove(item)
+            return foundlist
+
+        elif search == 'popgreater':
+            for item in dictlist:
+                # gets all the values into a list
+
+                vals = item.values()
+
+                # filters if the population is greater than elem parameter
+                if item != None and vals[0]['POPESTIMATE2013'] > elem:
+                    foundlist.append(item)
+                    self.remove(item)
+            return foundlist
+
+        else:
+            for item in dictlist:
+                # gets all the values into a list
+
+                vals = item.values()
+                if item != None and vals[0]['POPESTIMATE2013'] < elem:
+                    foundlist.append(item)
+                    self.remove(item)
+            return foundlist
+
 
 
     
