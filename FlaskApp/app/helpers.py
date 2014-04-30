@@ -49,7 +49,7 @@ def remove_duplicate(dictlist):
     return output
 
 
-def PopulationCSV(uniquelist):
+def CSVmaker(uniquelist):
     
     # gets the rownames from any element of the list of dicts
     rownames = uniquelist[0].keys()

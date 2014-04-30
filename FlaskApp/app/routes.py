@@ -29,7 +29,7 @@ def population():
         app.vars['poplesser'] = request.form['poplesser']
 
         # FIX BUG HERE: should only accept one request
-        filters.FilterPop(populationskiplist, app.vars, 'initial')
+        filters.filter(populationskiplist, app.vars, 'initial', 'NAME')
 
         return render_template('download.html')
 

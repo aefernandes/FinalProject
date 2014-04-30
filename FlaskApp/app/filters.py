@@ -7,7 +7,7 @@ import helpers
 # takes in a skiplist and a dict of parameters to filter 
 # and the type of parameter to filter
 
-def FilterPop(sklist, postreqdict, param):
+def filter(sklist, postreqdict, param, mainkey):
     # checks if initial is a POST request
     if param in postreqdict:
         initialvalue = postreqdict[param]
@@ -24,7 +24,7 @@ def FilterPop(sklist, postreqdict, param):
         singledictionary = {}
 
         namelist = elem.keys()
-        singledictionary['NAME'] = namelist[0]
+        singledictionary[mainkey] = namelist[0]
 
         importantvals = elem.values()
 
@@ -39,6 +39,6 @@ def FilterPop(sklist, postreqdict, param):
     uniquelist = helpers.remove_duplicate(precsvlist)
 
     # makes a csv with the uniquelist
-    helpers.PopulationCSV(uniquelist)
+    helpers.CSVmaker(uniquelist)
  
  
