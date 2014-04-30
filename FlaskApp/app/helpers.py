@@ -56,7 +56,7 @@ def CSVmaker(uniquelist):
     # gets the rownames from any element of the list of dicts
     rownames = uniquelist[0].keys()
     with open('filtereddata.csv', 'wb') as f:
-        writervar = csv.writer(f)
+        writervar = csv.writer(f, dialect='excel')
         writervar.writerow(rownames)
 
         for row in uniquelist:

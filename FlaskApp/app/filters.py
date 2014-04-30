@@ -17,8 +17,10 @@ def filter(sklist, postreqdict, param, mainkey, typedata):
     # with that initial
     if typedata == 1:
         filteredlist = sklist.populationfind(initialvalue, param)
-    else:
+    elif typedata == 2:
         filteredlist = sklist.ordersfind(initialvalue)
+    else:
+        filteredlist = sklist.grantfind(initialvalue, param)
 
     precsvlist = []
 
@@ -45,5 +47,3 @@ def filter(sklist, postreqdict, param, mainkey, typedata):
 
     # makes a csv with the uniquelist
     helpers.CSVmaker(uniquelist)
- 
- 

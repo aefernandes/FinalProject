@@ -49,7 +49,7 @@ class Builder(object):
 # Testing that the module works standalone and inserts appropriately
 if __name__ == '__main__':
 	# builds a sample skiplist to test
-	popobj = Builder('population.csv', 4, 'NAME')
+	popobj = Builder('researchgrants.csv', 0, 'Awardee')
 	populationlist = popobj.build()
 	for item in populationlist:
 		popobj.skiplist.insert(item)

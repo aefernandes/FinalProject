@@ -59,11 +59,22 @@ def grants():
 		# build the skiplist and pass in as argument
 		grantskiplist = helpers.makeGrantlist()
 
-		return render_template('searchgrants.html', grnt = grantskiplist)
+		return render_template('searchgrants.html')
 	else:
 		# for post request do the searching and redirect
-		# to the download page and pass in file as ar 
-		return render_template('searchpopulation.html')
+
+		# build the skiplist
+		grantskiplist = helpers.makeGrantlist()
+
+		app.vars['name_cont'] = request.form['name_cont']
+		app.vars['category'] = request.form['category']
+
+
+		# FIX BUG HERE: should only accept one request
+		filters.filter(grantskiplist, app.vars, 'category', 'Awardee', 3)
+
+
+		return render_template('download.html')
 
 
 if __name__ == '__main__':
