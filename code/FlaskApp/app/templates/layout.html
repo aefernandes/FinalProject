@@ -10,15 +10,40 @@
   <body>
 
     <nav class="navbar navbar-inverse" role="navigation">
-      <ul>
-        <li><h2 style="color:white;"><a href="/" >Home</a></h2></li>
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+     <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">GovDataMiner</a>
+    </div>
+
+    
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/">Made for CS51</a></li>
+      
       </ul>
-    </nav>
+     
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="">Anjali F.</a></li>
+        <li><a href="">Camille R.</a></li>
+        <li><a href="">Raul J.</a></li>
+
+
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
    
-    <header>
-      <div class="container">
-        <h1 class="logo">DataMiner!</h1>
-    </header> 
+    <div class="page-header container">
+      <h1>Government Data Miner <small>Search for what you <b>need</b></small></h1>
+    </div>
      
     <div class="container">
       {% block content %}

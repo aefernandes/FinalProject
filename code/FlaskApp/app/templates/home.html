@@ -1,14 +1,72 @@
 {% extends "layout.html" %}
 {% block content %}
 
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
   <div class="jumbotron">
-    <h2>Choose Data to Search Through<h2>
-    <div class=metanav>
-    	<ul>
-    		<li><a href="/population">Population</a></li>
-    		<li><a href="/orders">Presidential Orders</a></li>
-    		<li><a href="/grants">Grants</a></li>
-    
-  	</div>
+  		<h2>Choose from 3 Datasets to Search Through</h2>
+  		<p>You can choose your search parameters, and our algorithms will quickly output a formatted file that can be easily opened and used in excel according to <b>your</b> needs</p>
+  		<div class="buttonmenu">
+  			<p><button class="btn btn-primary btn-lg active">Start Now!</button>
+  			</p>
+  		</div>
+  		<div class="hiddenbutton">
+  			<div class="container">
+     			 <h3>U.S Population Data by State</h3>
+     			 <div class="jumbotron">
+  					<p>You can choose your search parameters, and our algorithms will quickly output a formatted file that can be easily opened and used in excel according to <b>your</b> needs</p>
+  					<p><a href="/population" class="btn btn-success btn-lg">Population Data</a></p>
+
+     			 </div>
+    		</div>
+    		<div class="container">
+     			 <h3>Presidential Order Data</h3>
+     			 <div class="jumbotron">
+  					<p>You can choose your search parameters, and our algorithms will quickly output a formatted file that can be easily opened and used in excel according to <b>your</b> needs</p>
+  					<p><a href="/orders" class="btn btn-info btn-lg">Presidential Document Data</a></p>
+
+     			 </div>
+    		</div>
+    		<div class="container">
+     			 <h3>Research Grant Data</h3>
+     			 <div class="jumbotron">
+  					<p>You can choose your search parameters, and our algorithms will quickly output a formatted file that can be easily opened and used in excel according to <b>your</b> needs</p>
+  					<p><a href="/grants" class="btn btn-danger btn-lg">Research Grant Data</a></p>
+
+     			 </div>
+    		</div>
+  				
+
+  		</div>
+
+
   </div>
+  <script>
+  
+  $(document).ready(function(){
+
+    var $buttonmenu = $(".buttonmenu");
+    var $hiddenbutton = $('.hiddenbutton');
+
+    function showButtons() {
+    	if ($hiddenbutton.hasClass('active') ) {
+    		$hiddenbutton.show();
+    	}
+    	else {
+    		$hiddenbutton.hide();
+    	}
+       
+    }
+
+    $('.hiddenbutton').hide();
+
+     $(".buttonmenu").click(function() {
+            $buttonmenu.hide();
+            $hiddenbutton.addClass('active');
+            showButtons();
+    });
+
+});
+  </script>
 {% endblock %}
