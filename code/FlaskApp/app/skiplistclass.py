@@ -21,6 +21,9 @@ class SkipList:
     def __len__(self):
         return self.len
 
+    # updates list to keep track of elems
+    # and make insert and removal simple
+
     def updateList(self, elem):
         update = [None]*self.maxHeight
         x = self.head
@@ -30,6 +33,7 @@ class SkipList:
             update[i] = x
         return update
 
+    # defines function that finds an element in a skiplist
     def find(self, elem, update = None):
         if update == None:
             update = self.updateList(elem)
@@ -40,6 +44,8 @@ class SkipList:
         return None
     
 
+    # finds a specified population element in a population
+    # skiplist
     def populationfind(self, elem, search, update = None):
         # will be used to create a list of dictionaries
         # to represent the skip list
@@ -88,6 +94,7 @@ class SkipList:
                     self.remove(item)
             return foundlist
 
+    # similar to population
     def ordersfind(self, elem, update = None):
         # will be used to create a list of dictionaries
         # to represent the skip list
@@ -112,6 +119,7 @@ class SkipList:
                 self.remove(item)
         return foundlist
        
+    # similar to last two functions
     def grantfind(self, elem, search, update = None):
         # will be used to create a list of dictionaries
         # to represent the skip list
@@ -126,6 +134,7 @@ class SkipList:
                 dictlist.append(x.next[i].elem),
                 x = x.next[i]
 
+        # checks for the type of search parameter
         if search == 'name_cont':
             for item in dictlist:
 
@@ -151,10 +160,11 @@ class SkipList:
             return foundlist
 
 
-    
+    # function checks if skiplist contains elem
     def contains(self, elem, update = None):
         return self.find(elem, update) != None
 
+    # introduces probability into the creation of skiplists
     def randomHeight(self):
         height = 1
         while randint(1, 2) != 1:
@@ -195,3 +205,20 @@ class SkipList:
                 print x.next[i].elem, 
                 x = x.next[i]
             print ''
+
+if __name__ == '__main__':
+    # testing insertion of a basic int skiplist
+    intSkip = SkipList()
+    intlist = [1,2,3,4,5,6,7,8,9,10]
+    for num in intlist:
+        intSkip.insert(num)
+
+    intSkip.printList()
+
+    # testing removal from the skiplist
+    intSkip.remove(1)
+    assert(intSkip.find(1) == None)
+
+    # testing the contains function
+    assert(intSkip.contains(10) == True)
+

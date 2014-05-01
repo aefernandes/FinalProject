@@ -65,5 +65,23 @@ def CSVmaker(uniquelist):
             writervar.writerow(valtowrite)
 
 
+# Comprehensive tests for helper functions
+if __name__ == '__main__':
+
+    # testing the skiplist maker
+    skiplistone = makePopulationlist()
+    skiplistone.printList()
+
+    skiplisttwo = makePresidentialOrderlist()
+    skiplisttwo.printList()
+
+    skiplistthree = makeGrantlist()
+    skiplistthree.printList()
+
+    # builds a simple dictionary list to test the next function
+    testdict = [{1 : 'a'}, {1 : 'a'}, {2 : 'b'}]
+
+    assert(remove_duplicate(testdict) == [{1 : 'a'}, {2 : 'b'}])
+
 
 
