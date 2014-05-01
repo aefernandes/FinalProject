@@ -15,6 +15,7 @@ import csv
 
 app = Flask(__name__, static_url_path='')
 
+# creates a dictionary to store request objects
 app.vars = {}
 
 
@@ -35,14 +36,26 @@ def population():
 		# for post request do the searching and redirect
 		# to the download page and pass in file as arg
 	     #request was a POST
-        app.vars['initial'] = request.form['initial']
-        app.vars['popgreater'] = request.form['popgreater']
-        app.vars['poplesser'] = request.form['poplesser']
+		if request.form['initial'] != '':
+			app.vars['initial'] = request.form['initial']
+		if request.form['popgreater'] != '':
+			app.vars['popgreater'] = request.form['popgreater']
+		if request.form['poplesser'] != '':
+			app.vars['poplesser'] = request.form['poplesser']
+		
+	
+		if len(app.vars) == 1:
+        # checks for errors in the post request
+			searchtype = app.vars.keys()[0]
+		        
+			filters.filter(populationskiplist, app.vars, searchtype, 'NAME', 1)
 
-        # FIX BUG HERE: should only accept one request
-        filters.filter(populationskiplist, app.vars, 'initial', 'NAME', 1)
-
-        return render_template('download.html')
+			# resets the request dictionary
+			app.vars = {}
+			return render_template('download.html')
+		else:
+			app.vars = {}
+			return render_template('error.html')
 
 @app.route('/orders', methods = ['GET', 'POST'])
 def orders():
@@ -56,14 +69,27 @@ def orders():
 		# build the skiplist
 		orderskiplist = helpers.makePresidentialOrderlist()
 
-		app.vars['title_cont'] = request.form['title_cont']
-		app.vars['category'] = request.form['category']
+	
+		if request.form['title_cont'] != '':
+			app.vars['title_cont'] = request.form['title_cont']
+		if request.form['category'] != '':
+			app.vars['category'] = request.form['category']
+	    
+		if len(app.vars) == 1:
 
-		# FIX BUG HERE: should only accept one request
-		filters.filter(orderskiplist, app.vars, 'category', 'title', 2)
+			searchtype = app.vars.keys()[0]
+			
+			filters.filter(orderskiplist, app.vars, searchtype, 'title', 2)
 
+			# resets the request dictionary
+			app.vars = {}
+			return render_template('download.html')
 
-		return render_template('download.html')
+		else:
+			app.vars = {}
+			return render_template('error.html')
+
+		
 
 @app.route('/grants', methods = ['GET', 'POST'])
 def grants():
@@ -78,16 +104,27 @@ def grants():
 		# build the skiplist
 		grantskiplist = helpers.makeGrantlist()
 
-		app.vars['name_cont'] = request.form['name_cont']
-		app.vars['category'] = request.form['category']
+		if request.form['name_cont'] != '':
+			app.vars['name_cont'] = request.form['name_cont']
+		if request.form['category'] != '':
+			app.vars['category'] = request.form['category']
+
+	    
+		if len(app.vars) == 1:
+
+			searchtype = app.vars.keys()[0]
+
+			filters.filter(grantskiplist, app.vars, searchtype, 'Awardee', 3)
+
+			# resets the request dictionary
+			app.vars = {}
+			return render_template('download.html')
+		else:
+			app.vars = {}
+			return render_template('error.html')
 
 
-		# FIX BUG HERE: should only accept one request
-		filters.filter(grantskiplist, app.vars, 'category', 'Awardee', 3)
-
-
-		return render_template('download.html')
-
+# makes the download link for the filtered file
 @app.route('/download', methods = ['GET'])
 def download():
 	return app.send_static_file('filtereddata.csv')
